@@ -168,12 +168,13 @@ ABC(VALUE(CLEAN(TRIM(F15))))
 
 ## Funkcia pre sum na základe farby SumFarba
 ```basic
+' Farba Vyplne/Bunky
+' Rozsah Stlpec, Oblast, Tabulka
 Function sum_farba(Farba As Range, Rozsah As Range)
     Dim X As Double
     Dim Y As Double
-    'Dim i
+    Dim i As Long
     
-
     Y = Farba.Interior.ColorIndex
     
     For Each i In Rozsah
@@ -183,7 +184,5 @@ Function sum_farba(Farba As Range, Rozsah As Range)
     Next i
     
     sum_farba = X
-
 End Function
-
 ```
