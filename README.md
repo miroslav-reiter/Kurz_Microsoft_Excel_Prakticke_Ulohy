@@ -164,3 +164,26 @@ ABC(VALUE(CLEAN(TRIM(F15))))
 2. XLSM (Textové)  
 3. XLS (Binárne)  
 4. **XLSB (Binárne)**  
+
+
+## Funkcia pre sum na základe farby SumFarba
+```basic
+Function sum_farba(Farba As Range, Rozsah As Range)
+    Dim X As Double
+    Dim Y As Double
+    'Dim i
+    
+
+    Y = Farba.Interior.ColorIndex
+    
+    For Each i In Rozsah
+        If i.Interior.ColorIndex = Y Then
+            X = WorksheetFunction.Sum(i, X)
+        End If
+    Next i
+    
+    sum_farba = X
+
+End Function
+
+```
