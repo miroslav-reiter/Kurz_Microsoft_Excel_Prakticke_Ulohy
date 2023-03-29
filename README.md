@@ -174,7 +174,7 @@ ABC(VALUE(CLEAN(TRIM(F15))))
 
 
 ## Funkcia pre sum na základe farby SumFarba (Podmienené Formátovanie cez VBA)
-```basic
+```vb
 ' Farba Vyplne/Bunky
 ' Rozsah Stlpec, Oblast, Tabulka
 Function sum_farba(Farba As Range, Rozsah As Range)
@@ -194,7 +194,7 @@ Function sum_farba(Farba As Range, Rozsah As Range)
 End Function
 ```
 ## Funkcia pre min na základe farby MinFarba (Podmienené Formátovanie cez VBA)
-```basic
+```vb
 ' Farba Vyplne/Bunky
 ' Rozsah Stlpec, Oblast, Tabulka
 Function min_farba(Farba As Range, Rozsah As Range)
@@ -214,7 +214,7 @@ Function min_farba(Farba As Range, Rozsah As Range)
 End Function
 ```
 ## Subrutina s udalosťou typu zmena výberu na hárku pre zvýraznenie celého stĺpca a riadku podľa vybranej bunky
-```basic
+```vb
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     ' ColorIndex property (Excel Graph)
     ' https://learn.microsoft.com/en-us/office/vba/api/excel.colorindex
