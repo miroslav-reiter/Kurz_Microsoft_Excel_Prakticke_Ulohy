@@ -136,6 +136,13 @@ Medián čísel v rozsahu buniek. Medián je stredná hodnota zoradeného rozsah
 ```
 =IF(A3>89;"A";IF(A3>79;"B";IF(A3>69;"C";IF(A3>59;"D";"F"))))  
 ```
+#### Kombinácia Funkcií na Podmienené Formátovanie podľa výsledkov podielu/percent z obratu/predaja
+```
+=IF(F9>0;REPT("●";INT(F9*100));"")
+```
+```
+=IF(F10<0;REPT("●";INT(-F10*100));"
+```
 
 #### Vyhľadávacie Funkcie  
 Typ zhody  
@@ -166,14 +173,14 @@ ABC(VALUE(CLEAN(TRIM(F15))))
 4. **XLSB (Binárne)**  
 
 
-## Funkcia pre sum na základe farby SumFarba
+## Funkcia pre sum na základe farby SumFarba (Podmienené Formátovanie cez VBA)
 ```basic
 ' Farba Vyplne/Bunky
 ' Rozsah Stlpec, Oblast, Tabulka
 Function sum_farba(Farba As Range, Rozsah As Range)
     Dim X As Double
     Dim Y As Double
-    Dim i As Long
+    Dim i As Variant 'Object
     
     Y = Farba.Interior.ColorIndex
     
@@ -186,3 +193,39 @@ Function sum_farba(Farba As Range, Rozsah As Range)
     sum_farba = X
 End Function
 ```
+## Funkcia pre min na základe farby MinFarba (Podmienené Formátovanie cez VBA)
+```basic
+' Farba Vyplne/Bunky
+' Rozsah Stlpec, Oblast, Tabulka
+Function min_farba(Farba As Range, Rozsah As Range)
+    Dim X As Double
+    Dim Y As Double
+    Dim i As Variant 'Object
+    
+    Y = Farba.Interior.ColorIndex
+    
+    For Each i In Rozsah
+        If i.Interior.ColorIndex = Y Then
+            X = WorksheetFunction.Min(i, X)
+        End If
+    Next i
+    
+    min_farba = X
+End Function
+```
+## Subrutina s udalosťou typu zmena výberu na hárku pre zvýraznenie celého stĺpca a riadku podľa vybranej bunky
+```basic
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    ' ColorIndex property (Excel Graph)
+    ' https://learn.microsoft.com/en-us/office/vba/api/excel.colorindex
+    ' 1 - cierna, 2 - biela, 3 - cervena, 4 - Zelena,
+    ' 5 - Modra, 6 - zlta, 7 - magenta, 8 - cyan, 9 - bordova
+    Cells.Interior.ColorIndex = xlColorIndexNone
+    Target.EntireColumn.Interior.ColorIndex = 6
+    Target.EntireRow.Interior.ColorIndex = 6
+    Target.Interior.ColorIndex = xlColorIndexNone
+End Sub
+```
+
+
+
